@@ -1,7 +1,7 @@
 {
-  "name": "Plex Google Search",
+  "name": "WatchOnPlex",
   "version": "0.1.0",
-  "description": "My Chrome Extension",
+  "description": "WatchOnPlex, the ultimate Chrome extension, enriches your Google searches by seamlessly integrating Plex streaming options, ensuring a quick and direct path to your favorite movies and TV shows",
   "private": true,
   "scripts": {
     "watch": "node ./node_modules/webpack/bin/webpack.js --mode=development --watch --config config/webpack.config.js",

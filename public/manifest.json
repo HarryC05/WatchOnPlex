@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Plex Google Search",
+  "name": "WatchOnPlex",
   "version": "0.1.0",
   "description": "My Chrome Extension",
   "icons": {
@@ -13,7 +13,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Plex Google Search",
+    "default_title": "WatchOnPlex",
     "default_popup": "popup.html"
   },
   "permissions": [
