@@ -159,3 +159,22 @@ body {
     border-color: var(--primary);
     display: block;
 }
+
+/* WatchOnPlex--input-wrapper--input-with-prefix contains an input and a WatchOnPlex--input-wrapper--input-prefix span */
+.WatchOnPlex--input-wrapper--input-with-prefix {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.WatchOnPlex--input-wrapper--input-with-prefix .WatchOnPlex--input-wrapper--input-prefix {
+    margin-right: 0.5rem;
+}
+
+.WatchOnPlex--input-wrapper--input-prefix {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--secondary);
+}
