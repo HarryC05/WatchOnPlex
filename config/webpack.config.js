@@ -12,6 +12,13 @@ const config = merge(common, {
     contentScript: PATHS.src + '/contentScript.js',
     background: PATHS.src + '/background.js',
   },
+  resolve: {
+    fallback: {
+      "string_decoder": require.resolve("string_decoder/"),
+      "timers": require.resolve("timers-browserify"),
+      "buffer": require.resolve("buffer/"),
+    }
+  },
 });
 
 module.exports = config;
