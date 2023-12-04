@@ -125,7 +125,7 @@ const checkGoogleSearch = async () => {
 
   // plex link
   const plexLink = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key.replace('/children', '')}`;
-  const plexLogoLink = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT656utHA6hUMTGTosn8CkO7NCLpt3q79IWqZVo9rMTDaMoZEB5FVW8TnbtvA&s'
+  const plexLogoLink = 'https://github.com/HarryC05/WatchOnPlex/blob/main/public/icons/plex_logo.png?raw=true'
 
   // create the plex link element
   const plexEl = document.createElement('div');
