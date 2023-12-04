@@ -68,11 +68,18 @@ const checkGoogleSearch = async () => {
   }
 
   // get the first result
-  const result = res?.MediaContainer?.Video;
+  let result = res?.MediaContainer?.Video;
 
   if (!result) {
-    console.log('No results found');
-    return;
+    console.log('No film results found');
+
+    // if there are no video results, check for directory results
+    result = res?.MediaContainer?.Directory;
+
+    if (!result) {
+      console.log('No TV show results found');
+      return;
+    }
   }
 
   let media = {};
@@ -91,12 +98,21 @@ const checkGoogleSearch = async () => {
     media = result;
   }
 
+  if (Object.keys(media).length === 0) {
+    console.log('No results found');
+    return;
+  }
+
+  // plex link
+  const plexLink = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key.replace('/children', '')}`;
+  const plexLogoLink = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT656utHA6hUMTGTosn8CkO7NCLpt3q79IWqZVo9rMTDaMoZEB5FVW8TnbtvA&s'
+
   // create the plex link element
   const plexEl = document.createElement('div');
   plexEl.classList.add('fOYFme');
 
   const plexLinkEl = document.createElement('a');
-  plexLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key}`;
+  plexLinkEl.href = plexLink;
   plexLinkEl.target = '_blank';
   plexLinkEl.rel = 'noopener noreferrer';
 
@@ -114,7 +130,7 @@ const checkGoogleSearch = async () => {
   plexLinkIconImg.classList.add('YQ4gaf', 'zr758c');
   plexLinkIconImg.width = '40';
   plexLinkIconImg.height = '40';
-  plexLinkIconImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT656utHA6hUMTGTosn8CkO7NCLpt3q79IWqZVo9rMTDaMoZEB5FVW8TnbtvA&s';
+  plexLinkIconImg.src = plexLogoLink;
 
   plexLinkIconGimg.appendChild(plexLinkIconImg);
   plexLinkIconWrapperEl.appendChild(plexLinkIconGimg);
@@ -169,7 +185,7 @@ const checkGoogleSearch = async () => {
   const plexWatchServiceEl = document.createElement('div');
 
   const plexWatchServiceLinkEl = document.createElement('a');
-  plexWatchServiceLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key}`;
+  plexWatchServiceLinkEl.href = plexLink;
 
   const plexWatchServiceWrapperEl = document.createElement('div');
   plexWatchServiceWrapperEl.classList.add('o0DLIc', 'w6bhBd');
@@ -182,7 +198,7 @@ const checkGoogleSearch = async () => {
   plexWatchServiceIconImg.width = '28';
   plexWatchServiceIconImg.height = '28';
   plexWatchServiceIconImg.style.borderRadius = '9999px';
-  plexWatchServiceIconImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT656utHA6hUMTGTosn8CkO7NCLpt3q79IWqZVo9rMTDaMoZEB5FVW8TnbtvA&s';
+  plexWatchServiceIconImg.src = plexLogoLink;
 
   plexWatchServiceIconGimg.appendChild(plexWatchServiceIconImg);
   plexWatchServiceWrapperEl.appendChild(plexWatchServiceIconGimg);
