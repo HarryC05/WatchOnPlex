@@ -1,6 +1,6 @@
 # WatchOnPlex Chrome Extension
 
-![WatchOnPlex Logo](public/icons/icon_48.png)
+<img src="./public/icons/icon_512.png" alt="WatchOnPlex Logo" style="width:200px;">
 
 ## Overview
 
@@ -17,7 +17,7 @@ WatchOnPlex is a user-friendly Chrome extension designed to enhance your movie a
 
 1. Clone this repository or download the ZIP file.
   ```bash
-  git clone https://github.com/your-username/WatchOnPlex.git
+  git clone git@github.com:HarryC05/WatchOnPlex.git
   ```
    
 2. Open Google Chrome and navigate to chrome://extensions/.
