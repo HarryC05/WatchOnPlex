@@ -40,9 +40,6 @@ const searchPlexApi = async (title) => {
     data = result;
   });
 
-  console.log(data);
-  
-
   return data;
 }
 
@@ -77,8 +74,6 @@ const checkGoogleSearch = async () => {
     console.log('No results found');
     return;
   }
-
-  console.log('result', result);
 
   // create the plex link element
   const plexEl = document.createElement('div');
@@ -137,6 +132,100 @@ const checkGoogleSearch = async () => {
     // insert the plex link element before the first watch service
     watchServices.insertBefore(plexEl, watchServices.firstChild);
   }
+
+  let allWatchServices = document.querySelector('.xTWr4e span');
+  let allWatchServicesQuery = '.xTWr4e span';
+
+  if (!allWatchServices) {
+    return;
+  }
+
+  if (!allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText || allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText !== 'Available on') {
+    allWatchServices = document.querySelector('.nGOerd');
+    allWatchServicesQuery = '.nGOerd';
+  }
+
+  if (!allWatchServices) {
+    return;
+  }
+
+  // add plex to the list of watch services
+  const plexWatchServiceEl = document.createElement('div');
+
+  const plexWatchServiceLinkEl = document.createElement('a');
+  plexWatchServiceLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${result.$.key}`;
+
+  const plexWatchServiceWrapperEl = document.createElement('div');
+  plexWatchServiceWrapperEl.classList.add('o0DLIc', 'w6bhBd');
+
+  const plexWatchServiceIconGimg = document.createElement('g-img');
+  plexWatchServiceIconGimg.classList.add('hvFKJe', 'mTMorf');
+
+  const plexWatchServiceIconImg = document.createElement('img');
+  plexWatchServiceIconImg.classList.add('YQ4gaf', 'zr758c', 'wA1Bge');
+  plexWatchServiceIconImg.width = '28';
+  plexWatchServiceIconImg.height = '28';
+  plexWatchServiceIconImg.style.borderRadius = '9999px';
+  plexWatchServiceIconImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT656utHA6hUMTGTosn8CkO7NCLpt3q79IWqZVo9rMTDaMoZEB5FVW8TnbtvA&s';
+
+  plexWatchServiceIconGimg.appendChild(plexWatchServiceIconImg);
+  plexWatchServiceWrapperEl.appendChild(plexWatchServiceIconGimg);
+
+  const plexWatchServiceTextWrapperEl = document.createElement('div');
+  plexWatchServiceTextWrapperEl.classList.add('ellip', 'phXTff');
+
+  const plexWatchServiceTextEl = document.createElement('div');
+  plexWatchServiceTextEl.classList.add('ellip', 'bclEt');
+  plexWatchServiceTextEl.textContent = 'Plex';
+
+  const plexWatchServicePriceEl = document.createElement('div');
+  plexWatchServicePriceEl.classList.add('ellip', 'rsj3fb');
+  plexWatchServicePriceEl.textContent = 'Free';
+
+  plexWatchServiceTextWrapperEl.appendChild(plexWatchServiceTextEl);
+  plexWatchServiceTextWrapperEl.appendChild(plexWatchServicePriceEl);
+  plexWatchServiceWrapperEl.appendChild(plexWatchServiceTextWrapperEl);
+
+  const watchButtonWrapperEl = document.createElement('div');
+  watchButtonWrapperEl.classList.add('vH8Jjc', 'CYJS5e', 'plognb', 'k0Jjg', 'fCrZyc', 'LwdV0e', 'FR7ZSc', 'eFSWxd', 'PrjL8c');
+
+  const watchButtonEl = document.createElement('div');
+  watchButtonEl.classList.add('niO4u', 'VDgVie', 'SlP8xc');
+
+  const watchButtonInnerEl = document.createElement('div');
+  watchButtonInnerEl.classList.add('kHtcsd');
+
+  const watchButtonIconWrapperEl = document.createElement('span');
+  watchButtonIconWrapperEl.classList.add('d3o3Ad');
+
+  const watchButtonIconEl = document.createElement('span');
+  watchButtonIconEl.classList.add('z1asCe', 'KXvzXb');
+  watchButtonIconEl.style.height = '18px';
+  watchButtonIconEl.style.lineHeight = '18px';
+  watchButtonIconEl.style.width = '18px';
+  watchButtonIconEl.innerHTML='<svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>';
+
+  watchButtonIconWrapperEl.appendChild(watchButtonIconEl);
+  watchButtonInnerEl.appendChild(watchButtonIconWrapperEl);
+
+  const watchButtonTextEl = document.createElement('span');
+  watchButtonTextEl.classList.add('clOx1e', 'sjVJQd');
+  watchButtonTextEl.textContent = 'Watch';
+
+  watchButtonInnerEl.appendChild(watchButtonTextEl);
+  watchButtonEl.appendChild(watchButtonInnerEl);
+  watchButtonWrapperEl.appendChild(watchButtonEl);
+  plexWatchServiceWrapperEl.appendChild(watchButtonWrapperEl);
+  plexWatchServiceLinkEl.appendChild(plexWatchServiceWrapperEl);
+  plexWatchServiceEl.appendChild(plexWatchServiceLinkEl);
+
+  if (allWatchServicesQuery === '.xTWr4e span') {
+    allWatchServices.insertBefore(plexWatchServiceEl, allWatchServices.children[1]);
+    allWatchServices.children[2].querySelector('.o0DLIc').classList.remove('o0DLIc');
+    return;
+  }
+
+  allWatchServices.insertBefore(plexWatchServiceEl, allWatchServices.children[0]);
 }
 
 checkGoogleSearch();
