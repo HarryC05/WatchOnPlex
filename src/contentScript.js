@@ -98,9 +98,29 @@ const checkGoogleSearch = async () => {
     media = result;
   }
 
-  if (Object.keys(media).length === 0) {
-    console.log('No results found');
-    return;
+  if (Object.keys(media).length === 0 && res?.MediaContainer?.Video) {
+    result = res?.MediaContainer?.Directory;
+    if (!result) {
+      console.log('No TV show results found');
+      return;
+    }
+    // check if there are multiple results
+    if (result.length > 1) {
+      // loop through the results and find the one with the correct title
+      for (const r of result) {
+        if (r.$.title.toLowerCase() === title.toLowerCase()) {
+          // if the title matches, use that result
+          media = r;
+          break;
+        }
+      }
+    } else {
+      media = result;
+    }
+    if (Object.keys(media).length === 0) {
+      console.log('No results found');
+      return;
+    }
   }
 
   // plex link
@@ -168,11 +188,11 @@ const checkGoogleSearch = async () => {
   let allWatchServices = document.querySelector('.xTWr4e span');
   let allWatchServicesQuery = '.xTWr4e span';
 
-  if (!allWatchServices) {
-    return;
-  }
 
-  if (!allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText || allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText !== 'Available on') {
+  if (!allWatchServices) {
+    allWatchServices = document.querySelector('.nGOerd');
+    allWatchServicesQuery = '.nGOerd';
+  } else if (!allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText || allWatchServices.querySelector('.dSPY6 .F3p6q')?.innerText !== 'Available on') {
     allWatchServices = document.querySelector('.nGOerd');
     allWatchServicesQuery = '.nGOerd';
   }
