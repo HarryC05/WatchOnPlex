@@ -75,12 +75,28 @@ const checkGoogleSearch = async () => {
     return;
   }
 
+  let media = {};
+
+  // check if there are multiple results
+  if (result.length > 1) {
+    // loop through the results and find the one with the correct title
+    for (const r of result) {
+      if (r.$.title.toLowerCase() === title.toLowerCase()) {
+        // if the title matches, use that result
+        media = r;
+        break;
+      }
+    }
+  } else {
+    media = result;
+  }
+
   // create the plex link element
   const plexEl = document.createElement('div');
   plexEl.classList.add('fOYFme');
 
   const plexLinkEl = document.createElement('a');
-  plexLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${result.$.key}`;
+  plexLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key}`;
   plexLinkEl.target = '_blank';
   plexLinkEl.rel = 'noopener noreferrer';
 
@@ -153,7 +169,7 @@ const checkGoogleSearch = async () => {
   const plexWatchServiceEl = document.createElement('div');
 
   const plexWatchServiceLinkEl = document.createElement('a');
-  plexWatchServiceLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${result.$.key}`;
+  plexWatchServiceLinkEl.href = `https://app.plex.tv/desktop/#!/server/${plexDetails.machineIdentifier}/details?key=${media.$.key}`;
 
   const plexWatchServiceWrapperEl = document.createElement('div');
   plexWatchServiceWrapperEl.classList.add('o0DLIc', 'w6bhBd');
